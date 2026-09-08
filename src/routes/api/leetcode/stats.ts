@@ -1,8 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import type { LeetCodeStats } from "@/lib/leetcode-stats";
+import { portfolio } from "@/lib/portfolio";
 
-const LEETCODE_USERNAME = "Aman_7217";
+const LEETCODE_USERNAME = portfolio.leetcode.username;
 const GRAPHQL_ENDPOINT = "https://leetcode.com/graphql";
 const CACHE_TTL_MS = 15 * 60 * 1000;
 const FETCH_TIMEOUT_MS = 8_000;
@@ -48,7 +49,7 @@ async function postGraphQL(
       headers: {
         "content-type": "application/json",
         accept: "application/json",
-        referer: "https://leetcode.com/u/Aman_7217/",
+        referer: `https://leetcode.com/u/${LEETCODE_USERNAME}/`,
         "user-agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36",
       },

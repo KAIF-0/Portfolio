@@ -1,0 +1,110 @@
+{
+  "personal": {
+    "name": "Kaif Khan",
+    "location": "India",
+    "email": "kaif.work1@outlook.com",
+    "phone": "+91 8700979251",
+    "website": "kaif.prods.dev",
+    "role": "SOFTWARE ENGINEER BUILDING FULL-STACK, AI-POWERED SYSTEMS",
+    "tagline": "I build scalable products across backend, distributed systems, and AI-driven workflows.",
+    "summary": "Results-driven full-stack developer experienced in building scalable, high-performance web applications and production-ready systems. Strong focus on delivering seamless user experiences, clean and maintainable code, and reliable backend architecture. Passionate about solving complex engineering problems, continuously learning modern technologies, and building impactful products end-to-end.",
+    "aboutHeading": "Clean, scalable, production-ready code."
+  },
+  "socials": [
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/kaif-khan-47bb19292", "icon": "work" },
+    { "label": "GitHub", "url": "https://github.com/KAIF-0", "icon": "code" }
+  ],
+  "resume": { "path": "", "downloadName": "Kaif-Khan-Resume.pdf" },
+  "marqueeItems": ["Software Engineer", "Java", "TypeScript", "React", "Spring Boot", "Node.js", "AWS", "Docker", "Distributed Systems", "AI / LLMs"],
+  "skills": [
+    { "category": "Languages", "items": ["Java", "TypeScript", "JavaScript", "SQL"] },
+    { "category": "Frontend", "items": ["React.js", "Next.js", "Tailwind CSS", "Zustand", "TanStack Query"] },
+    { "category": "Backend", "items": ["Spring Boot", "Spring Security", "GraphQL", "Node.js", "Express.js", "Bun.js", "Hono.js"] },
+    { "category": "Databases", "items": ["PostgreSQL", "MongoDB", "MySQL", "Redis"] },
+    { "category": "Cloud & DevOps", "items": ["Docker", "Kubernetes", "Nginx", "AWS EC2", "S3", "CloudWatch", "GitHub Actions"] },
+    { "category": "Messaging & Eventing", "items": ["RabbitMQ", "BullMQ", "SQS", "SNS", "EventBridge"] },
+    { "category": "AI & LLMs", "items": ["LangChain", "LangGraph", "RAG", "Vector Databases", "LangSmith"] }
+  ],
+  "experience": [
+    {
+      "role": "Software Engineer Intern",
+      "company": "Terrabiz Tech Pvt. Ltd.",
+      "location": "Madhya Pradesh, India",
+      "period": "Aug 2025 — Jan 2026",
+      "points": [
+        "Designed and implemented a hierarchical RBAC system with dynamic subordinate resolution for a production backend serving 10,000+ active users.",
+        "Optimized MongoDB aggregation pipelines through indexing, caching, and parallel execution strategies, reducing critical query response times to under 1 second.",
+        "Developed a daily notification pipeline using AWS Lambda, CloudWatch Events, and Amazon SQS, distributing one message per business to parallel consumers for scalable release claim delivery.",
+        "Implemented CI/CD pipelines for Dockerized backend deployments on AWS (EC2, ECS) using GitHub Actions and PM2 for production process management."
+      ]
+    },
+    {
+      "role": "Web Developer Intern",
+      "company": "Lean Bianca",
+      "location": "Hosle, Norway",
+      "period": "Jan 2026 — Feb 2026",
+      "points": [
+        "Integrated the Next.js payment gateway into a luxury e-commerce platform, implementing a complete end-to-end payment workflow using Next.js and Express.js.",
+        "Designed a resilient payment processing architecture with pending transaction tracking, real-time status polling, and order synchronization.",
+        "Developed secure webhook handlers for asynchronous payment updates, ensuring transactional consistency and reliable order state management."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "LogFlow",
+      "period": "",
+      "tech": ["Spring Boot", "Java", "RabbitMQ", "Redis", "PostgreSQL", "Docker", "Npm"],
+      "liveUrl": "https://logsflow.prods.live",
+      "githubUrl": "",
+      "points": [
+        "Built a centralized observability platform that enables real-time monitoring across distributed services through a custom npm SDK and Spring Boot backend for structured operational visibility.",
+        "Designed an event-driven RabbitMQ processing pipeline with batch persistence and asynchronous workers to efficiently handle high-volume log ingestion across distributed applications.",
+        "Implemented Redis-powered live metrics aggregation, threshold-based alerting, and automated email notifications to support proactive monitoring and faster incident response."
+      ]
+    },
+    {
+      "name": "DocsAI",
+      "period": "",
+      "tech": ["Next.js", "LangGraph", "BullMQ", "Redis", "Upstash Vector", "LangSmith"],
+      "liveUrl": "https://docs-ai.prods.live",
+      "githubUrl": "",
+      "points": [
+        "Developed an AI-powered documentation intelligence platform that extracts, indexes, and semantically searches website content using LangGraph-based agent workflows.",
+        "Implemented BullMQ and Redis-backed asynchronous pipelines to process long-running scraping workflows efficiently and improve system scalability.",
+        "Leveraged Upstash Vector for semantic retrieval and implemented context-aware conversational memory, enabling follow-up questions while preserving conversation context."
+      ]
+    },
+    {
+      "name": "Resumify",
+      "period": "",
+      "tech": ["Next.js", "LangChain", "RabbitMQ", "Supabase", "PostgreSQL"],
+      "liveUrl": "https://resumify.prods.live",
+      "githubUrl": "",
+      "points": [
+        "Automated portfolio website generation from uploaded resumes in under 15 seconds, transforming structured resume data into personalized portfolio websites.",
+        "Built a dedicated resume-processing service using Bun.js and Hono.js, leveraging RabbitMQ to handle asynchronous processing workloads and improve reliability.",
+        "Developed a LangChain-powered AI pipeline that performs intelligent resume parsing, AI-driven scoring, and structured content generation for in-app portfolio optimization."
+      ]
+    }
+  ],
+  "certifications": [],
+  "achievements": [
+    {
+      "title": "Data Structures and Algorithms",
+      "detail": "600+ problems solved",
+      "points": ["Solved 600+ Data Structures and Algorithms problems across LeetCode, GeeksforGeeks, and other coding platforms."]
+    }
+  ],
+  "education": [
+    {
+      "school": "University School of Information, Communication & Technology (USICT)",
+      "degree": "Bachelor of Technology (B.Tech)",
+      "detail": "Information Technology (CGPA: 8.37/10)",
+      "location": "Delhi, India",
+      "period": "2023 — 2027"
+    }
+  ],
+  "hobbies": [],
+  "leetcode": { "username": "Neyo-01", "maxStreak": "", "badge": "" }
+}

@@ -2,23 +2,25 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import type { CSSProperties, ReactNode } from "react";
 import portrait from "@/assets/portrait.png";
-import resumePdf from "@/assets/AmanResume.pdf";
 import type { LeetCodeStats } from "@/lib/leetcode-stats";
+import { hasText, portfolio } from "@/lib/portfolio";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Aman Sharma | Full Stack Developer" },
+      {
+        title: `${portfolio.personal.name} | ${portfolio.personal.role || "Software Engineer"}`,
+      },
       {
         name: "description",
         content:
-          "Full stack developer building scalable web applications — from databases and APIs to fast, pixel-perfect frontends.",
+          portfolio.personal.summary || "Software engineer building scalable production systems.",
       },
-      { property: "og:title", content: "Aman Sharma | Full Stack Developer" },
+      { property: "og:title", content: portfolio.personal.name },
       {
         property: "og:description",
         content:
-          "Designing and building full stack applications end to end — clean APIs, solid architecture, and great user experiences.",
+          portfolio.personal.summary || "Software engineer building scalable production systems.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -46,146 +48,49 @@ const navLinks = [
   { label: "Contact", href: "#contact" },
 ];
 
-const socials = [
-  { label: "GitHub", icon: "code", href: "https://github.com/Aman-Sharma-Dev01" },
-  { label: "LinkedIn", icon: "work", href: "https://linkedin.com/in/aman-sharma-dev01" },
-];
-
-const marqueeItems = [
-  "Full Stack Developer",
-  "React.js",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "AWS",
-  "Docker",
-  "CI/CD",
-  "REST APIs",
-  "Cloud Native",
-];
-
-const experience = [
-  {
-    role: "Full Stack Development Intern (Paid)",
-    company: "MR Impact",
-    location: "Faridabad, India",
-    period: "Sept 2025 — Nov 2025",
-    points: [
-      "Developed LegacyLink, an alumni and student management SaaS platform using the MERN Stack, supporting profile management, event tracking, and alumni-student networking.",
-      "Built a responsive, mobile-first UI with React and Tailwind CSS; designed MongoDB schemas and REST APIs.",
-      "Containerized services with Docker and set up automated build/deploy workflows using GitHub Actions CI/CD.",
-    ],
-  },
-];
-
-const projects = [
-  {
-    name: "Insight4Excellence",
-    period: "Feb 2026 — Present",
-    tech: ["React", "Node.js", "MongoDB", "Google Gemini", "AWS"],
-    points: [
-      "Built a production-ready full-stack analytics portal processing 20,000+ Google Forms responses via server-side aggregation and caching.",
-      "Integrated dynamic filters, data visualization, CSV export, and AI-driven insights using Google Gemini.",
-      "Containerized the application with Docker and deployed on AWS ECS (hosted on Amazon EC2 instances), with container images stored and versioned in Amazon ECR.",
-    ],
-  },
-  {
-    name: "Surveyzen.live",
-    period: "Oct 2025 — Jan 2026",
-    tech: ["React", "Node.js", "MongoDB", "SEO"],
-    points: [
-      "Built a SaaS platform for surveys and quizzes with real-time response collection and analytics using React and Node.js.",
-      "Designed a flexible form-builder engine supporting multiple question types and conditional logic.",
-      "Implemented SEO-optimized UI, improving search visibility and page-load performance.",
-      "Automated build and deployment using GitHub Actions CI/CD, reducing manual release effort.",
-    ],
-  },
-  {
-    name: "MediCare+",
-    period: "Sept 2025 — Oct 2025",
-    tech: ["MERN Stack", "Socket.IO"],
-    points: [
-      "Developed a healthcare app with appointment booking, electronic health records (EHR), and real-time emergency alerts using Socket.IO.",
-      "Designed a live queue management system to provide real-time patient flow updates.",
-      "Built role-based access control for patients, doctors, and admins to secure sensitive medical data.",
-    ],
-  },
-];
-
-const skillGroups = [
-  { group: "Languages", items: ["Java", "JavaScript", "DSA & OOP"] },
-  {
-    group: "Frameworks / Stack",
-    items: ["React.js", "Node.js", "Express.js", "Angular", "Tailwind CSS", "MERN Stack"],
-  },
-  {
-    group: "Cloud & DevOps",
-    items: ["AWS (EC2, ECS, ECR)", "Docker", "GitHub Actions (CI/CD)", "Agile SDLC"],
-  },
-  {
-    group: "Databases & Deployment",
-    items: ["MongoDB", "Vercel", "Render", "Netlify", "Cloudflare"],
-  },
-  { group: "Tools", items: ["Git", "VS Code", "Postman"] },
-];
-
-const certifications = [
-  "Design Thinking — NPTEL: Certified training in human-centered innovation",
-  "Faridabad IMT Expo: Volunteered at registration and visitor coordination",
-];
-
-const awards = [
-  {
-    title: "NASA Space Apps Challenge",
-    detail: "Noida · 1st Place",
-    points: ["Developed a weather prediction app using NASA climate datasets"],
-  },
-  {
-    title: "Google Devs Sprint '25 Hackathon",
-    detail: "Top 10 Finalist",
-    points: ["Built a smart healthcare platform with AI-based report summarization"],
-  },
-];
-
-const education = [
-  {
-    school: "Manav Rachna University",
-    degree: "B.Tech in Computer Science Engineering (Lateral Entry)",
-    detail: "CGPA: 8.7",
-    location: "Faridabad, India",
-    period: "Aug 2024 — Present",
-  },
-  {
-    school: "Sheela Devi Institute of Management & Technology",
-    degree: "Diploma in Computer Science Engineering",
-    detail: "74%",
-    location: "India",
-    period: "2021 — 2024",
-  },
-];
-
+const socials = portfolio.socials;
+const marqueeItems = portfolio.marqueeItems;
+const experience = portfolio.experience;
+const projects = portfolio.projects;
+const skillGroups = portfolio.skills;
+const certifications = portfolio.certifications;
+const awards = portfolio.achievements;
+const education = portfolio.education;
 const contactLinks = [
-  { label: "Phone", value: "+91 72178 96449", href: "tel:+917217896449", icon: "call" },
-  {
-    label: "Email",
-    value: "asharma8464@gmail.com",
-    href: "mailto:asharma8464@gmail.com",
-    icon: "mail",
-  },
-  { label: "Website", value: "amansh.in", href: "https://amansh.in", icon: "language" },
-  {
-    label: "LinkedIn",
-    value: "linkedin.com/in/aman-sharma-dev01",
-    href: "https://linkedin.com/in/aman-sharma-dev01",
-    icon: "work",
-  },
-  {
-    label: "GitHub",
-    value: "github.com/Aman-Sharma-Dev01",
-    href: "https://github.com/Aman-Sharma-Dev01",
-    icon: "code",
-  },
-];
+  hasText(portfolio.personal.phone)
+    ? {
+        label: "Phone",
+        value: portfolio.personal.phone,
+        href: `tel:${portfolio.personal.phone}`,
+        icon: "call",
+      }
+    : null,
+  hasText(portfolio.personal.email)
+    ? {
+        label: "Email",
+        value: portfolio.personal.email,
+        href: `mailto:${portfolio.personal.email}`,
+        icon: "mail",
+      }
+    : null,
+  hasText(portfolio.personal.website)
+    ? {
+        label: "Website",
+        value: portfolio.personal.website,
+        href: `https://${portfolio.personal.website}`,
+        icon: "language",
+      }
+    : null,
+  ...portfolio.socials.map((social) => ({
+    label: social.label,
+    value: social.url.replace(/^https?:\/\//, "").replace(/\/$/, ""),
+    href: social.url,
+    icon: social.icon,
+  })),
+].filter((link): link is NonNullable<typeof link> => link !== null);
+const leetcodeUrl = hasText(portfolio.leetcode.username)
+  ? `https://leetcode.com/u/${portfolio.leetcode.username}/`
+  : null;
 
 function SectionHeader({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -338,7 +243,7 @@ function CompetitiveProgrammingCard() {
           </li>
         </ul>
         <a
-          href="https://leetcode.com/u/Aman_7217/"
+          href={leetcodeUrl ?? "https://leetcode.com"}
           target="_blank"
           rel="noreferrer"
           className="mt-5 inline-flex items-center gap-2 font-label-mono text-[12px] uppercase tracking-widest text-primary hover:underline"
@@ -391,8 +296,12 @@ function CompetitiveProgrammingCard() {
       ];
 
   const staticRows = [
-    { label: "Max Streak", value: "64 days" },
-    { label: "Badge", value: "50 Days Badge (2026)" },
+    ...(hasText(portfolio.leetcode.maxStreak)
+      ? [{ label: "Max Streak", value: portfolio.leetcode.maxStreak }]
+      : []),
+    ...(hasText(portfolio.leetcode.badge)
+      ? [{ label: "Badge", value: portfolio.leetcode.badge }]
+      : []),
   ];
 
   return (
@@ -421,7 +330,7 @@ function CompetitiveProgrammingCard() {
             Updated {formatLastUpdated(stats.lastUpdated)}
           </p>
           <a
-            href="https://leetcode.com/u/Aman_7217/"
+            href={leetcodeUrl ?? "https://leetcode.com"}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 font-label-mono text-[12px] uppercase tracking-widest text-primary hover:underline"
@@ -445,7 +354,7 @@ function Index() {
             <div className="flex items-center gap-3">
               <span className="w-3 h-3 rounded-full status-glow block" />
               <span className="font-label-mono text-[12px] uppercase tracking-widest text-primary">
-                Available // 2026
+                Available // {new Date().getFullYear()}
               </span>
             </div>
           </div>
@@ -475,7 +384,7 @@ function Index() {
       </nav>
 
       {/* Hero */}
-      <main className="relative w-full h-screen min-h-[800px] overflow-hidden pt-16 grid-paper">
+      <main className="relative w-full h-[620px] min-h-[620px] lg:h-screen lg:min-h-[800px] overflow-hidden pt-16 grid-paper">
         <div className="absolute inset-0 pt-16 grid grid-cols-12 grid-rows-6 pointer-events-none z-0 opacity-20">
           <div className="col-span-3 row-span-6 border-r-2 border-border" />
           <div className="col-span-6 row-span-6 border-r-2 border-border" />
@@ -485,19 +394,19 @@ function Index() {
 
         {/* Typography layer */}
         <div className="absolute inset-0 z-10 pointer-events-none select-none overflow-hidden">
-          <h1 className="absolute left-0 top-[96vh] -rotate-90 origin-top-left text-outline-primary text-[13vw] leading-[0.8] tracking-[-0.05em] uppercase font-extrabold m-0 p-0 opacity-0 animate-reveal-right">
-            Aman
+          <h1 className="hidden lg:block absolute left-[32%] top-[20vh] rotate-0 origin-top-left text-outline-primary text-[13vw] leading-[0.8] tracking-[-0.05em] uppercase font-extrabold m-0 p-0 opacity-0 animate-reveal-right">
+            {portfolio.personal.name.split(" ")[0]}
           </h1>
-          <span className="absolute right-[-2vw] top-[40vh] md:top-[30vh] text-primary text-[18vw] leading-[0.8] tracking-[-0.08em] uppercase font-black mix-blend-exclusion z-30 opacity-0 animate-fade-up [animation-delay:300ms]">
-            Sharma
+          <span className="hidden lg:block absolute right-[-5vw] top-[30vh] text-primary text-[clamp(4.5rem,18vw,16rem)] leading-[0.8] tracking-[-0.08em] uppercase font-black mix-blend-exclusion z-10 opacity-0 animate-fade-up [animation-delay:300ms]">
+            {portfolio.personal.name.split(" ").slice(1).join(" ")}
           </span>
         </div>
 
         {/* Portrait */}
-        <div className="absolute bottom-0 right-[10%] md:right-[20%] w-[90%] md:w-[60%] h-[75vh] md:h-[85vh] z-20 opacity-0 animate-fade-up [animation-delay:100ms] pointer-events-none flex items-end drop-shadow-2xl">
+        <div className="hidden lg:flex absolute bottom-0 right-[20%] w-[60%] h-[85vh] z-20 opacity-0 animate-fade-up [animation-delay:100ms] pointer-events-none items-end drop-shadow-2xl">
           <img
             src={portrait}
-            alt="Portrait of Aman Sharma, Full Stack Developer"
+            alt={`Portrait of ${portfolio.personal.name}`}
             width={1024}
             height={1408}
             className="w-full h-full object-contain object-bottom origin-bottom float-soft"
@@ -510,21 +419,21 @@ function Index() {
         </div>
 
         {/* Bio card */}
-        <div className="absolute top-24 left-6 md:left-12 max-w-sm z-40 opacity-0 animate-fade-up [animation-delay:500ms] brutalist-border p-6 bg-surface/90 backdrop-blur-sm">
+        <div className="absolute top-24 left-4 right-4 sm:left-6 sm:right-auto md:left-12 max-w-sm z-40 opacity-0 animate-fade-up [animation-delay:500ms] brutalist-border p-4 sm:p-6 bg-surface/90 backdrop-blur-sm">
+          <p className="mb-4 border-b-[3px] border-border pb-3 text-[28px] leading-none font-black uppercase tracking-tight text-primary sm:text-[34px]">
+            {portfolio.personal.name}
+          </p>
           <div className="border-b-[3px] border-border pb-4 mb-4">
-            <h2 className="text-[36px] md:text-[44px] leading-none text-primary font-black uppercase tracking-tighter">
-              Full Stack
-              <br />
-              Developer
+            <h2 className="text-[28px] sm:text-[36px] md:text-[44px] leading-none text-primary font-black uppercase tracking-tighter">
+              {portfolio.personal.role}
             </h2>
           </div>
-          <p className="font-label-mono text-[14px] leading-relaxed tracking-normal text-on-surface mb-8 font-medium">
-            Building fast, scalable web applications end to end — from databases and APIs to
-            pixel-perfect frontends.
+          <p className="font-label-mono text-[12px] sm:text-[14px] leading-relaxed tracking-normal text-on-surface mb-6 sm:mb-8 font-medium">
+            {portfolio.personal.tagline}
           </p>
           <a
             href="#contact"
-            className="inline-flex items-center justify-between w-full bg-primary text-primary-foreground font-label-mono text-[14px] uppercase tracking-widest px-6 py-4 hover:bg-card hover:text-primary border-[3px] border-border transition-colors group"
+            className="inline-flex items-center justify-between w-full bg-primary text-primary-foreground font-label-mono text-[12px] sm:text-[14px] uppercase tracking-widest px-4 sm:px-6 py-3 sm:py-4 hover:bg-card hover:text-primary border-[3px] border-border transition-colors group"
           >
             Collaborate
             <span className="material-symbols-outlined text-[20px] group-hover:translate-x-2 transition-transform">
@@ -534,14 +443,14 @@ function Index() {
         </div>
 
         {/* Socials */}
-        <aside className="absolute bottom-12 right-6 md:right-12 flex flex-col items-end z-40 opacity-0 animate-fade-up [animation-delay:500ms] brutalist-border bg-surface">
+        <aside className="absolute bottom-4 right-4 sm:bottom-8 sm:right-6 md:bottom-12 md:right-12 flex flex-col items-end z-40 opacity-0 animate-fade-up [animation-delay:500ms] brutalist-border bg-surface">
           {socials.map((s) => (
             <a
               key={s.label}
-              href={s.href}
+              href={s.url}
               target="_blank"
               rel="noreferrer"
-              className="px-6 py-4 border-b-2 border-border text-primary hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-between w-48"
+              className="px-4 sm:px-6 py-3 sm:py-4 border-b-2 border-border text-primary hover:bg-primary hover:text-primary-foreground transition-colors flex items-center justify-between w-40 sm:w-48"
             >
               <span className="font-label-mono text-[13px] uppercase tracking-widest">
                 {s.label}
@@ -549,16 +458,18 @@ function Index() {
               <span className="material-symbols-outlined text-[20px]">{s.icon}</span>
             </a>
           ))}
-          <a
-            href={resumePdf}
-            download="AmanResume.pdf"
-            className="px-6 py-4 flex items-center justify-between w-48 bg-primary text-primary-foreground hover:bg-card hover:text-primary transition-colors group"
-          >
-            <span className="font-label-mono text-[13px] uppercase tracking-widest">Resume</span>
-            <span className="material-symbols-outlined text-[20px] group-hover:animate-bounce">
-              download
-            </span>
-          </a>
+          {hasText(portfolio.resume.path) ? (
+            <a
+              href={portfolio.resume.path}
+              download={portfolio.resume.downloadName}
+              className="px-6 py-4 flex items-center justify-between w-48 bg-primary text-primary-foreground hover:bg-card hover:text-primary transition-colors group"
+            >
+              <span className="font-label-mono text-[13px] uppercase tracking-widest">Resume</span>
+              <span className="material-symbols-outlined text-[20px] group-hover:animate-bounce">
+                download
+              </span>
+            </a>
+          ) : null}
         </aside>
       </main>
 
@@ -578,342 +489,426 @@ function Index() {
       </div>
 
       {/* About */}
-      <section id="about" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
-          <p className="font-label-mono text-[12px] uppercase tracking-widest text-primary mb-10">
-            01 // About
-            <span className="cursor-blink" aria-hidden="true" />
-          </p>
-          <p className="reveal text-[28px] md:text-[44px] leading-[1.05] font-black uppercase tracking-tighter text-primary max-w-5xl">
-            Clean, scalable, production-ready code.
-          </p>
-          <p className="reveal mt-8 max-w-3xl text-lg md:text-xl leading-relaxed text-on-surface">
-            Aspiring Software Engineer with a strong foundation in Data Structures, OOP, and
-            cloud-native development. Experienced in building and deploying full-stack MERN
-            applications, containerized microservices, and AI-integrated systems using AWS and CI/CD
-            pipelines. Passionate about writing clean, scalable, production-ready code.
-          </p>
-        </div>
-      </section>
+      {hasText(portfolio.personal.aboutHeading) || hasText(portfolio.personal.summary) ? (
+        <section id="about" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
+            <p className="font-label-mono text-[12px] uppercase tracking-widest text-primary mb-10">
+              01 // About
+              <span className="cursor-blink" aria-hidden="true" />
+            </p>
+            <p className="reveal text-[28px] md:text-[44px] leading-[1.05] font-black uppercase tracking-tighter text-primary max-w-5xl">
+              {portfolio.personal.aboutHeading}
+            </p>
+            <p className="reveal mt-8 max-w-3xl text-lg md:text-xl leading-relaxed text-on-surface">
+              {portfolio.personal.summary}
+            </p>
+          </div>
+        </section>
+      ) : null}
 
       {/* Experience */}
-      <section id="work" className="scroll-mt-16 border-t-[3px] border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
-          <SectionHeader label="02 // Experience">
-            Work &amp;
-            <br />
-            Internship
-          </SectionHeader>
-          <div className="grid gap-8">
-            {experience.map((job, i) => (
-              <article
-                key={job.role}
-                style={{ "--stagger": i } as CSSProperties}
-                className="reveal-stagger brutalist-border bg-card p-6 md:p-10 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 active:scale-[0.99] group"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-4 mb-8">
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary">
-                      {job.role}
-                    </h3>
-                    <p className="font-label-mono text-[13px] uppercase tracking-widest text-muted-foreground mt-2">
-                      {job.company}
-                    </p>
+      {experience.length > 0 ? (
+        <section id="work" className="scroll-mt-16 border-t-[3px] border-border bg-card">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
+            <SectionHeader label="02 // Experience">
+              Work &amp;
+              <br />
+              Internship
+            </SectionHeader>
+            <div className="grid gap-8">
+              {experience.map((job, i) => (
+                <article
+                  key={job.role}
+                  style={{ "--stagger": i } as CSSProperties}
+                  className="reveal-stagger brutalist-border bg-card p-6 md:p-10 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 active:scale-[0.99] group"
+                >
+                  <div className="flex flex-wrap items-start justify-between gap-4 mb-8">
+                    <div>
+                      {hasText(job.role) ? (
+                        <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary">
+                          {job.role}
+                        </h3>
+                      ) : null}
+                      {hasText(job.company) ? (
+                        <p className="font-label-mono text-[13px] uppercase tracking-widest text-muted-foreground mt-2">
+                          {job.company}
+                        </p>
+                      ) : null}
+                    </div>
+                    <div className="text-left md:text-right">
+                      {hasText(job.period) ? (
+                        <p className="font-label-mono text-[12px] uppercase tracking-widest text-primary">
+                          {job.period}
+                        </p>
+                      ) : null}
+                      {hasText(job.location) ? (
+                        <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-1">
+                          {job.location}
+                        </p>
+                      ) : null}
+                    </div>
                   </div>
-                  <div className="text-left md:text-right">
-                    <p className="font-label-mono text-[12px] uppercase tracking-widest text-primary">
-                      {job.period}
-                    </p>
-                    <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-1">
-                      {job.location}
-                    </p>
-                  </div>
-                </div>
-                <ul className="space-y-4">
-                  {job.points.map((point) => (
-                    <li key={point} className="flex gap-4">
-                      <span className="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5 transition-transform duration-200 group-hover:translate-x-1">
-                        arrow_right
-                      </span>
-                      <p className="text-[15px] leading-relaxed text-on-surface">{point}</p>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
+                  <ul className="space-y-4">
+                    {job.points.map((point) => (
+                      <li key={point} className="flex gap-4">
+                        <span className="material-symbols-outlined text-primary text-[20px] shrink-0 mt-0.5 transition-transform duration-200 group-hover:translate-x-1">
+                          arrow_right
+                        </span>
+                        <p className="text-[15px] leading-relaxed text-on-surface">{point}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* Projects */}
-      <section id="projects" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
-          <SectionHeader label="03 // Projects">
-            Featured
-            <br />
-            Projects
-          </SectionHeader>
-          <div className="grid grid-cols-12 gap-8">
-            {projects.map((project, i) => (
-              <article
-                key={project.name}
-                style={{ "--stagger": i } as CSSProperties}
-                className="reveal-stagger col-span-12 md:col-span-6 brutalist-border bg-card p-6 md:p-8 flex flex-col gap-6 transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_0_var(--color-primary)] active:translate-x-0 active:translate-y-0 active:scale-[0.99] group"
-              >
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t, j) => (
-                    <span
-                      key={t}
-                      style={{ animationDelay: `${i * 120 + j * 60}ms` }}
-                      className="font-label-mono text-[10px] md:text-[11px] uppercase tracking-widest text-primary border-2 border-border px-2 py-1 bg-surface"
-                    >
-                      {t}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-auto">
+      {projects.length > 0 ? (
+        <section id="projects" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
+            <SectionHeader label="03 // Projects">
+              Featured
+              <br />
+              Projects
+            </SectionHeader>
+            <div className="grid grid-cols-12 gap-8">
+              {projects.map((project, i) => (
+                <article
+                  key={project.name}
+                  style={{ "--stagger": i } as CSSProperties}
+                  className="reveal-stagger col-span-12 md:col-span-6 brutalist-border bg-card p-6 md:p-8 flex flex-col gap-6 transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[8px_8px_0_0_var(--color-primary)] active:translate-x-0 active:translate-y-0 active:scale-[0.99] group"
+                >
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.filter(hasText).map((t, j) => (
+                      <span
+                        key={t}
+                        style={{ animationDelay: `${i * 120 + j * 60}ms` }}
+                        className="font-label-mono text-[10px] md:text-[11px] uppercase tracking-widest text-primary border-2 border-border px-2 py-1 bg-black text-white"
+                      >
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex flex-1 flex-col">
+                    <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-primary">
+                      {project.name}
+                    </h3>
+                    {hasText(project.period) ? (
+                      <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-1 mb-5">
+                        {project.period}
+                      </p>
+                    ) : null}
+                    <ul className="space-y-3">
+                      {project.points.map((point) => (
+                        <li key={point} className="flex gap-3">
+                          <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5 transition-transform duration-200 group-hover:translate-x-1">
+                            chevron_right
+                          </span>
+                          <p className="text-[14px] leading-relaxed text-on-surface">{point}</p>
+                        </li>
+                      ))}
+                    </ul>
+                    {hasText(project.liveUrl) || hasText(project.githubUrl) ? (
+                      <div className="mt-auto pt-6 flex flex-wrap gap-3">
+                        {hasText(project.liveUrl) ? (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 border-2 border-border px-3 py-2 font-label-mono text-[11px] uppercase tracking-widest hover:bg-primary hover:text-primary-foreground"
+                          >
+                            Live Demo
+                            <span className="material-symbols-outlined text-[16px]">
+                              arrow_outward
+                            </span>
+                          </a>
+                        ) : null}
+                        {hasText(project.githubUrl) ? (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-2 border-2 border-border px-3 py-2 font-label-mono text-[11px] uppercase tracking-widest hover:bg-primary hover:text-primary-foreground"
+                          >
+                            GitHub
+                            <span className="material-symbols-outlined text-[16px]">code</span>
+                          </a>
+                        ) : null}
+                      </div>
+                    ) : null}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Skills */}
+      {skillGroups.some((group) => group.items.length > 0) ? (
+        <section id="skills" className="scroll-mt-16 border-t-[3px] border-border bg-card">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
+            <SectionHeader label="04 // Skills">
+              Technical
+              <br />
+              Arsenal
+            </SectionHeader>
+            <div className="grid grid-cols-12 gap-8">
+              <div className="col-span-12 md:col-span-7">
+                {skillGroups.map((group, i) => (
+                  <div
+                    key={group.category}
+                    style={{ "--stagger": i } as CSSProperties}
+                    className="reveal-stagger flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 border-b-2 border-border py-5 group"
+                  >
+                    <p className="md:w-48 shrink-0 font-label-mono text-[12px] uppercase tracking-widest text-primary">
+                      {group.category}
+                    </p>
+                    <p className="text-[15px] leading-relaxed text-on-surface">
+                      {group.items.map((item, j) => (
+                        <span key={item}>
+                          {j > 0 ? <span className="text-primary"> · </span> : null}
+                          <span className="transition-colors duration-200 hover:bg-primary hover:text-primary-foreground hover:px-1 hover:-mx-0.5 box-decoration-clone">
+                            {item}
+                          </span>
+                        </span>
+                      ))}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div className="col-span-12 md:col-span-5 space-y-6">
+                {hasText(portfolio.leetcode.username) ? (
+                  <div
+                    style={{ "--stagger": 0 } as CSSProperties}
+                    className="reveal-stagger brutalist-border bg-card p-6 md:p-8"
+                  >
+                    <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-primary mb-6">
+                      Competitive Programming
+                    </h3>
+                    <CompetitiveProgrammingCard />
+                  </div>
+                ) : null}
+                {certifications.length > 0 ? (
+                  <div
+                    style={{ "--stagger": 1 } as CSSProperties}
+                    className="reveal-stagger brutalist-border bg-card p-6 md:p-8"
+                  >
+                    <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-primary mb-6">
+                      Certifications &amp; Volunteering
+                    </h3>
+                    <ul className="space-y-3">
+                      {certifications.map((item) => (
+                        <li key={item} className="flex gap-3">
+                          <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">
+                            verified
+                          </span>
+                          <p className="text-[14px] leading-relaxed text-on-surface">{item}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </div>
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Achievements */}
+      {awards.length > 0 ? (
+        <section id="achievements" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
+            <SectionHeader label="05 // Achievements">
+              Awards &amp;
+              <br />
+              Recognition
+            </SectionHeader>
+            <div className="grid grid-cols-12 gap-8">
+              {awards.map((award, i) => (
+                <article
+                  key={award.title}
+                  style={{ "--stagger": i } as CSSProperties}
+                  className="reveal-stagger col-span-12 md:col-span-6 brutalist-border bg-card p-6 md:p-8 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 active:scale-[0.99] group"
+                >
+                  <span className="material-symbols-outlined float-icon text-primary text-[36px] mb-6 block">
+                    workspace_premium
+                  </span>
                   <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-primary">
-                    {project.name}
+                    {award.title}
                   </h3>
-                  <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-1 mb-5">
-                    {project.period}
-                  </p>
+                  {hasText(award.detail) ? (
+                    <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-2 mb-5">
+                      {award.detail}
+                    </p>
+                  ) : null}
                   <ul className="space-y-3">
-                    {project.points.map((point) => (
+                    {award.points.map((point) => (
                       <li key={point} className="flex gap-3">
                         <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5 transition-transform duration-200 group-hover:translate-x-1">
-                          chevron_right
+                          arrow_right
                         </span>
                         <p className="text-[14px] leading-relaxed text-on-surface">{point}</p>
                       </li>
                     ))}
                   </ul>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Skills */}
-      <section id="skills" className="scroll-mt-16 border-t-[3px] border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
-          <SectionHeader label="04 // Skills">
-            Technical
-            <br />
-            Arsenal
-          </SectionHeader>
-          <div className="grid grid-cols-12 gap-8">
-            <div className="col-span-12 md:col-span-7">
-              {skillGroups.map((group, i) => (
-                <div
-                  key={group.group}
-                  style={{ "--stagger": i } as CSSProperties}
-                  className="reveal-stagger flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 border-b-2 border-border py-5 group"
-                >
-                  <p className="md:w-48 shrink-0 font-label-mono text-[12px] uppercase tracking-widest text-primary">
-                    {group.group}
-                  </p>
-                  <p className="text-[15px] leading-relaxed text-on-surface">
-                    {group.items.map((item, j) => (
-                      <span key={item}>
-                        {j > 0 ? <span className="text-primary"> · </span> : null}
-                        <span className="transition-colors duration-200 hover:bg-primary hover:text-primary-foreground hover:px-1 hover:-mx-0.5 box-decoration-clone">
-                          {item}
-                        </span>
-                      </span>
-                    ))}
-                  </p>
-                </div>
+                </article>
               ))}
             </div>
-            <div className="col-span-12 md:col-span-5 space-y-6">
+          </div>
+        </section>
+      ) : null}
+
+      {/* Education */}
+      {education.length > 0 ? (
+        <section id="education" className="scroll-mt-16 border-t-[3px] border-border bg-card">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
+            <SectionHeader label="06 // Education">Education</SectionHeader>
+            <div className="grid grid-cols-12 gap-8">
+              {education.map((edu, i) => (
+                <article
+                  key={edu.school}
+                  style={{ "--stagger": i } as CSSProperties}
+                  className="reveal-stagger col-span-12 md:col-span-6 brutalist-border bg-card p-6 md:p-8 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 active:scale-[0.99] group"
+                >
+                  <div className="flex items-start justify-between gap-4 mb-5">
+                    <span className="material-symbols-outlined float-icon text-primary text-[32px]">
+                      school
+                    </span>
+                    <div className="text-right">
+                      {hasText(edu.period) ? (
+                        <p className="font-label-mono text-[12px] uppercase tracking-widest text-primary">
+                          {edu.period}
+                        </p>
+                      ) : null}
+                      {hasText(edu.location) ? (
+                        <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-1">
+                          {edu.location}
+                        </p>
+                      ) : null}
+                    </div>
+                  </div>
+                  <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-primary">
+                    {edu.school}
+                  </h3>
+                  {hasText(edu.degree) ? (
+                    <p className="text-[15px] leading-relaxed text-on-surface mt-2">{edu.degree}</p>
+                  ) : null}
+                  {hasText(edu.detail) ? (
+                    <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-3">
+                      {edu.detail}
+                    </p>
+                  ) : null}
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {portfolio.hobbies.length > 0 ? (
+        <section id="hobbies" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
+            <SectionHeader label="07 // Hobbies">Beyond the Code</SectionHeader>
+            <div className="flex flex-wrap gap-3">
+              {portfolio.hobbies.filter(hasText).map((hobby) => (
+                <span
+                  key={hobby}
+                  className="brutalist-border bg-card px-4 py-3 font-label-mono text-xs uppercase tracking-widest"
+                >
+                  {hobby}
+                </span>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      {/* Contact */}
+      {contactLinks.length > 0 ? (
+        <section id="contact" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
+          <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
+            <SectionHeader label="07 // Contact">
+              Let's Work
+              <br />
+              Together
+            </SectionHeader>
+            <div className="grid grid-cols-12 gap-8">
               <div
                 style={{ "--stagger": 0 } as CSSProperties}
-                className="reveal-stagger brutalist-border bg-card p-6 md:p-8"
+                className="reveal-stagger col-span-12 md:col-span-7"
               >
-                <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-primary mb-6">
-                  Competitive Programming
-                </h3>
-                <CompetitiveProgrammingCard />
+                <div className="brutalist-border bg-card divide-y-[2px] divide-border">
+                  {contactLinks.map((link) => (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target={
+                        link.href.startsWith("mailto:") || link.href.startsWith("tel:")
+                          ? undefined
+                          : "_blank"
+                      }
+                      rel={
+                        link.href.startsWith("mailto:") || link.href.startsWith("tel:")
+                          ? undefined
+                          : "noreferrer"
+                      }
+                      className="flex items-center gap-5 px-6 py-5 hover:bg-primary hover:text-primary-foreground transition-colors group active:translate-y-px"
+                    >
+                      <span className="material-symbols-outlined text-[24px]">{link.icon}</span>
+                      <div className="flex-1">
+                        <p className="font-label-mono text-[11px] uppercase tracking-widest text-muted-foreground group-hover:text-primary-foreground/70">
+                          {link.label}
+                        </p>
+                        <p className="text-[15px] md:text-base font-bold text-primary group-hover:text-primary-foreground break-all">
+                          {link.value}
+                        </p>
+                      </div>
+                      <span className="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">
+                        arrow_outward
+                      </span>
+                    </a>
+                  ))}
+                </div>
               </div>
               <div
                 style={{ "--stagger": 1 } as CSSProperties}
-                className="reveal-stagger brutalist-border bg-card p-6 md:p-8"
+                className="reveal-stagger col-span-12 md:col-span-5"
               >
-                <h3 className="text-lg md:text-xl font-black uppercase tracking-tight text-primary mb-6">
-                  Certifications &amp; Volunteering
-                </h3>
-                <ul className="space-y-3">
-                  {certifications.map((item) => (
-                    <li key={item} className="flex gap-3">
-                      <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">
-                        verified
-                      </span>
-                      <p className="text-[14px] leading-relaxed text-on-surface">{item}</p>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Achievements */}
-      <section id="achievements" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
-          <SectionHeader label="05 // Achievements">
-            Awards &amp;
-            <br />
-            Recognition
-          </SectionHeader>
-          <div className="grid grid-cols-12 gap-8">
-            {awards.map((award, i) => (
-              <article
-                key={award.title}
-                style={{ "--stagger": i } as CSSProperties}
-                className="reveal-stagger col-span-12 md:col-span-6 brutalist-border bg-card p-6 md:p-8 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 active:scale-[0.99] group"
-              >
-                <span className="material-symbols-outlined float-icon text-primary text-[36px] mb-6 block">
-                  workspace_premium
-                </span>
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-primary">
-                  {award.title}
-                </h3>
-                <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-2 mb-5">
-                  {award.detail}
-                </p>
-                <ul className="space-y-3">
-                  {award.points.map((point) => (
-                    <li key={point} className="flex gap-3">
-                      <span className="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5 transition-transform duration-200 group-hover:translate-x-1">
-                        arrow_right
-                      </span>
-                      <p className="text-[14px] leading-relaxed text-on-surface">{point}</p>
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Education */}
-      <section id="education" className="scroll-mt-16 border-t-[3px] border-border bg-card">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
-          <SectionHeader label="06 // Education">Education</SectionHeader>
-          <div className="grid grid-cols-12 gap-8">
-            {education.map((edu, i) => (
-              <article
-                key={edu.school}
-                style={{ "--stagger": i } as CSSProperties}
-                className="reveal-stagger col-span-12 md:col-span-6 brutalist-border bg-card p-6 md:p-8 transition-all duration-200 hover:-translate-y-1 active:translate-y-0 active:scale-[0.99] group"
-              >
-                <div className="flex items-start justify-between gap-4 mb-5">
-                  <span className="material-symbols-outlined float-icon text-primary text-[32px]">
-                    school
+                <div className="brutalist-border bg-card p-6 md:p-8 h-full flex flex-col">
+                  <span className="material-symbols-outlined float-icon text-primary text-[40px] mb-6">
+                    rocket_launch
                   </span>
-                  <div className="text-right">
-                    <p className="font-label-mono text-[12px] uppercase tracking-widest text-primary">
-                      {edu.period}
-                    </p>
-                    <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-1">
-                      {edu.location}
-                    </p>
-                  </div>
-                </div>
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight text-primary">
-                  {edu.school}
-                </h3>
-                <p className="text-[15px] leading-relaxed text-on-surface mt-2">{edu.degree}</p>
-                <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground mt-3">
-                  {edu.detail}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="scroll-mt-16 border-t-[3px] border-border grid-paper">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-12 py-20 md:py-24">
-          <SectionHeader label="07 // Contact">
-            Let's Work
-            <br />
-            Together
-          </SectionHeader>
-          <div className="grid grid-cols-12 gap-8">
-            <div
-              style={{ "--stagger": 0 } as CSSProperties}
-              className="reveal-stagger col-span-12 md:col-span-7"
-            >
-              <div className="brutalist-border bg-card divide-y-[2px] divide-border">
-                {contactLinks.map((link) => (
+                  <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary leading-tight">
+                    Have a project
+                    <br />
+                    in mind?
+                  </h3>
+                  <p className="text-[15px] leading-relaxed text-on-surface mt-4">
+                    {portfolio.personal.summary}
+                  </p>
                   <a
-                    key={link.label}
-                    href={link.href}
-                    target={
-                      link.href.startsWith("mailto:") || link.href.startsWith("tel:")
-                        ? undefined
-                        : "_blank"
+                    href={
+                      hasText(portfolio.personal.email)
+                        ? `mailto:${portfolio.personal.email}`
+                        : "#contact"
                     }
-                    rel={
-                      link.href.startsWith("mailto:") || link.href.startsWith("tel:")
-                        ? undefined
-                        : "noreferrer"
-                    }
-                    className="flex items-center gap-5 px-6 py-5 hover:bg-primary hover:text-primary-foreground transition-colors group active:translate-y-px"
+                    className="mt-auto inline-flex items-center justify-between w-full bg-primary text-primary-foreground font-label-mono text-[14px] uppercase tracking-widest px-6 py-4 hover:bg-card hover:text-primary border-[3px] border-border transition-colors group"
                   >
-                    <span className="material-symbols-outlined text-[24px]">{link.icon}</span>
-                    <div className="flex-1">
-                      <p className="font-label-mono text-[11px] uppercase tracking-widest text-muted-foreground group-hover:text-primary-foreground/70">
-                        {link.label}
-                      </p>
-                      <p className="text-[15px] md:text-base font-bold text-primary group-hover:text-primary-foreground break-all">
-                        {link.value}
-                      </p>
-                    </div>
-                    <span className="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">
-                      arrow_outward
+                    Email Me
+                    <span className="material-symbols-outlined text-[20px] group-hover:translate-x-2 transition-transform">
+                      arrow_forward
                     </span>
                   </a>
-                ))}
-              </div>
-            </div>
-            <div
-              style={{ "--stagger": 1 } as CSSProperties}
-              className="reveal-stagger col-span-12 md:col-span-5"
-            >
-              <div className="brutalist-border bg-card p-6 md:p-8 h-full flex flex-col">
-                <span className="material-symbols-outlined float-icon text-primary text-[40px] mb-6">
-                  rocket_launch
-                </span>
-                <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tight text-primary leading-tight">
-                  Have a project
-                  <br />
-                  in mind?
-                </h3>
-                <p className="text-[15px] leading-relaxed text-on-surface mt-4">
-                  Open to full stack development roles and interesting collaborations. Let's build
-                  something great together.
-                </p>
-                <a
-                  href="mailto:asharma8464@gmail.com"
-                  className="mt-auto inline-flex items-center justify-between w-full bg-primary text-primary-foreground font-label-mono text-[14px] uppercase tracking-widest px-6 py-4 hover:bg-card hover:text-primary border-[3px] border-border transition-colors group"
-                >
-                  Email Me
-                  <span className="material-symbols-outlined text-[20px] group-hover:translate-x-2 transition-transform">
-                    arrow_forward
-                  </span>
-                </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       {/* Marquee 2 */}
       <div
@@ -934,10 +929,10 @@ function Index() {
       <footer className="border-t-[3px] border-border bg-surface grid-paper">
         <div className="reveal mx-auto max-w-[1400px] px-6 md:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="font-label-mono text-[12px] uppercase tracking-widest text-primary">
-            © 2026 Aman Sharma
+            © {new Date().getFullYear()} {portfolio.personal.name}
           </p>
           <p className="font-label-mono text-[12px] uppercase tracking-widest text-muted-foreground">
-            Designed &amp; Built by Aman Sharma
+            Designed &amp; Built by {portfolio.personal.name}
           </p>
         </div>
       </footer>

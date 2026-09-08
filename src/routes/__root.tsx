@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { portfolio } from "@/lib/portfolio";
 
 import appCss from "../styles.css?url";
 
@@ -73,10 +74,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Contribution Dash" },
-      { name: "description", content: "A contribution dashboard" },
-      { property: "og:title", content: "Contribution Dash" },
-      { property: "og:description", content: "A contribution dashboard" },
+      { title: `${portfolio.personal.name} | Portfolio` },
+      { name: "description", content: portfolio.personal.summary || "Software engineer portfolio" },
+      { property: "og:title", content: portfolio.personal.name },
+      {
+        property: "og:description",
+        content: portfolio.personal.summary || "Software engineer portfolio",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
