@@ -7,14 +7,14 @@
     "website": "kaif.prods.dev",
     "role": "SOFTWARE ENGINEER BUILDING FULL-STACK, AI-POWERED SYSTEMS",
     "tagline": "I build scalable products across backend, distributed systems, and AI-driven workflows.",
-    "summary": "Results-driven full-stack developer experienced in building scalable, high-performance web applications and production-ready systems. Strong focus on delivering seamless user experiences, clean and maintainable code, and reliable backend architecture. Passionate about solving complex engineering problems, continuously learning modern technologies, and building impactful products end-to-end.",
+    "summary": "Full-stack developer experienced in building scalable, production-ready applications across backend, distributed systems, and AI-driven workflows. Focused on reliable architecture, clean code, seamless user experiences, and solving complex engineering problems end-to-end.",
     "aboutHeading": "Clean, scalable, production-ready code."
   },
   "socials": [
     { "label": "LinkedIn", "url": "https://linkedin.com/in/kaif-khan-47bb19292", "icon": "work" },
     { "label": "GitHub", "url": "https://github.com/KAIF-0", "icon": "code" }
   ],
-  "resume": { "path": "", "downloadName": "Kaif-Khan-Resume.pdf" },
+  "resume": { "path": "https://drive.google.com/file/d/1zzSakL00gamthg9tZmc_ies65p4QiBbX/view?usp=sharing", "downloadName": "Kaif-Khan-Resume.pdf" },
   "marqueeItems": ["Software Engineer", "Java", "TypeScript", "React", "Spring Boot", "Node.js", "AWS", "Docker", "Distributed Systems", "AI / LLMs"],
   "skills": [
     { "category": "Languages", "items": ["Java", "TypeScript", "JavaScript", "SQL"] },

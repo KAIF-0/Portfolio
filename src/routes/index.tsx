@@ -461,11 +461,12 @@ function Index() {
           {hasText(portfolio.resume.path) ? (
             <a
               href={portfolio.resume.path}
-              download={portfolio.resume.downloadName}
-              className="px-6 py-4 flex items-center justify-between w-48 bg-primary text-primary-foreground hover:bg-card hover:text-primary transition-colors group"
+              target="_blank"
+              rel="noreferrer"
+              className="px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between w-40 sm:w-48 bg-primary text-primary-foreground hover:bg-card hover:text-primary transition-colors group"
             >
               <span className="font-label-mono text-[13px] uppercase tracking-widest">Resume</span>
-              <span className="material-symbols-outlined text-[20px] group-hover:animate-bounce">
+              <span className="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">
                 download
               </span>
             </a>
